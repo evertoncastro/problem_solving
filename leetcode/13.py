@@ -7,23 +7,22 @@ class Solution(object):
         :rtype: int
         """
         from_to = {
-            'I': 1,
-            'V': 5,
-            'X': 10,
-            'L': 50,
-            'C': 100,
-            'D': 500,
-            'M': 1000
+            'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000
         }
         i = 0
         value = 0
         while i < len(x):
+            current = from_to[x[i]]
             if i == 0:
-                value += from_to[x[i]]
+                value += current
             else:
-                value += from_to[x[i]] if from_to[x[i-1]] >= from_to[x[i]] else (from_to[x[i]] - 2 * from_to[x[i-1]])
+                last = from_to[x[i-1]]
+                last_plus_2 = 2 * last
+                value += current if last >= current else (current - last_plus_2)
             i += 1
         return value
+
+        
 
 
 if __name__ == '__main__':
